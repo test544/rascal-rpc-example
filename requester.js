@@ -31,10 +31,10 @@ async function main() {
             //console.log("checking:" + JSON.stringify(subscription));
         } catch (err) {
             console.error(err);
-		}
+	}
 
-		setInterval(async function () {
-            try {
+	setInterval(async function () {
+	try {
                 const publication = await broker.publish('pub_workers', new Date().toISOString() + `: message from "${id}"`, {
                     options: {
                         replyTo: subscription.config.source,
