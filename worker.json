@@ -1,0 +1,44 @@
+{
+	"$schema": "node_modules/rascal/lib/config/schema.json",
+	"vhosts": {
+		"/": {
+			"connection": {
+				"vhost": "/",
+				"hostname": "<DO FILL THIS>",
+				"port": 5672,
+				"protocol": "amqp",
+				"user": "<DO FILL THIS>",
+				"password": "<DO FILL THIS>",
+				"heartbeat": 1,
+				"socketOptions": {
+					"timeout": 1000
+				},
+				"retry": {
+					"min": 1000,
+					"max": 10000,
+					"strategy": "linear"
+				}
+			},
+			"queues": {
+				"logger_q": {
+					"assert": false,
+					"check": false
+				},
+				"workers": {
+					"assert": true,
+					"check": false,
+					"options": {
+						"durable": false,
+						"exclusive": false
+					}
+				}
+			},
+			"subscriptions": {
+				"sub_workers": {
+					"queue": "workers",
+					"vhost": "/"
+				}
+			}
+		}
+	}
+}
